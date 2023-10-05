@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Pavel Babusik",
+    "position": "front-end developer",
+    "birth": "2. 12. 3212"
+
+  },
+  {
+    "id": 2,
+    "name": "Adam Krcek",
+    "position": "product manager",
+    "birth": "2. 12. 3212"
+
+  },
+  {
+    "id": 3,
+    "name": "John Smith",
+    "position": "scrum master",
+    "birth": "2. 12. 3212"
+
+  },
+  {
+    "id": 4,
+    "name": "Petr Novak",
+    "position": "full-stack developer",
+    "birth": "2. 12. 3212"
+
+  }
+]

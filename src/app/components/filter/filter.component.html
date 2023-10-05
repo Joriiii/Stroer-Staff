@@ -1,0 +1,15 @@
+<div class="container">
+  <h3 class="text-neutral-600 font-extrabold">Try filter for better search: </h3>
+  <div class="grid sm:grid-cols-4 gap-4 py-4 lg:grid-cols-4">
+    <div class="col-span-3">
+      <input placeholder="Name or Position" [(ngModel)]="searchQuery"
+             class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-sky-900 block w-full  p-2.5" />
+    </div>
+
+
+  <div class= "flex justify-end pb-4 col-span-1">
+    <a (click)="emitSearchQuery()" type="button" class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-orange-600 dark:hover:bg-orange-700 focus:outline-none dark:focus:ring-orange-800 uppercase">Search</a>
+  </div>
+</div>
+
+</div>
