@@ -27,18 +27,20 @@ export class StaffDetailComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     console.log('ID:', id);
     if (id !== null && id !== undefined) {
-      const parsedId = +id;
+      const parsedId = Number.parseInt(id);
       console.log('Parsed ID:', parsedId);
-      this.apiService.getUserById(parsedId).subscribe(staffMember => {
-        console.log('Staff Member:', staffMember);
-        if (staffMember) {
-          this.staffMemberForm.setValue({
-            name: staffMember.name || '',
-            position: staffMember.position || '',
-            birth: staffMember.birth || ''
-          });
-        }
-      });
+
+      const staffMember = this.apiService.getUserById(parsedId)
+
+      if (staffMember != null || staffMember != undefined) {
+        console.log(staffMember.name)
+        this.staffMemberForm.setValue({
+          name: staffMember.name || '',
+          position: staffMember.position || '',
+          birth: staffMember.birth || ''
+        });
+      }
+
     }
   }
 
