@@ -12,7 +12,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class StaffDetailComponent implements OnInit {
   staffMember: StaffMember[] = [];
-  public StaffStorage: StaffMember[] = [];
+
 
   staffMemberForm: FormGroup = new FormGroup({
     name: new FormControl(''),
@@ -41,9 +41,9 @@ export class StaffDetailComponent implements OnInit {
           birth: staffMember.birth || ''
         });
       }
-
     }
   }
+
 
   protected readonly query = query;
 }
