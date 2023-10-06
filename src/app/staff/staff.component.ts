@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { ApiService } from '../api/api.service';
 import { StaffMember } from '../api/models/staff-member.model';
 import {query} from "@angular/animations";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-staff',
@@ -13,7 +14,7 @@ export class StaffComponent implements OnInit {
   filteredStaffMembers: StaffMember[] = [];
   positions: string[] = [];
 
-  constructor(public apiService: ApiService) {
+  constructor(public apiService: ApiService,  private router: Router) {
   }
 
   ngOnInit() {
@@ -33,6 +34,10 @@ export class StaffComponent implements OnInit {
       member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       member.position.toLowerCase().includes(searchQuery.toLowerCase())
     );
+  }
+
+  redirectToDetail(id: number) {
+    this.router.navigate(['/staff-detail', id]);
   }
 
   protected readonly query = query;

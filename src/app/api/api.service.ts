@@ -61,8 +61,9 @@ export class ApiService {
     }
   }
 
-  getUserById(id: number): StaffMember | undefined {
-    return this.StaffStorage.find(member => member.id === id);
+  getUserById(id: number): Observable<StaffMember> {
+    const url = `${this.staffUrl}/staffMember/${id}`;
+    return this.http.get<StaffMember>(url);
   }
 
   getPositions(): Observable<StaffMemberPositionResponse> {
