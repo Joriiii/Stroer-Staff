@@ -23,8 +23,6 @@ export class StaffComponent implements OnInit {
       this.staffMembers = data;
       this.filteredStaffMembers = this.staffMembers
 
-
-
     })
 
   }

@@ -7,16 +7,15 @@
           <div class="flex justify-center items-center">
             <h2 class="font-heading text-xl text-orange-500 font-extrabold mb-4">EMPLOYEE | detail</h2>
           </div>
+
           <ng-container>
             <div>
-
               <div class="grid sm:grid-cols-2 gap-4 py-4 lg:grid-cols-4">
                 <div class="col-span-2">
                   <label class="pb-2" for="name">Name and surname:</label>
                   <input formControlName="name" id="name" name="name"
                          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5"
                          type="text"/>
-
                   <label class="pb-2">Position:</label>
                   <div class="relative">
                     <select *ngIf="apiService.positions !== null">
@@ -30,13 +29,11 @@
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " type="text" >
                 </div>
               </div>
-              <div class= "flex justify-end pb-4 gap-4" *ngFor="let staffMember of staffMembers">
+              <div class= "flex justify-end pb-4 gap-4" >
                 <a [routerLink]="['/staff']" (click)="this.apiService.updateStaffMember(staffMember)" type="button" class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-orange-600 dark:hover:bg-orange-700 focus:outline-none dark:focus:ring-orange-800 uppercase">Edit</a>
-                <a (click)="this.apiService.removeStaffMember(staffMember.id)" type="button" class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-orange-600 dark:hover:bg-orange-700 focus:outline-none dark:focus:ring-orange-800 uppercase">remove</a>
               </div>
             </div>
           </ng-container>
-
         </form>
       </div>
     </div>

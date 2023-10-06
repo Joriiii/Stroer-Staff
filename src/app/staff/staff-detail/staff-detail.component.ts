@@ -11,7 +11,8 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./staff-detail.component.css']
 })
 export class StaffDetailComponent implements OnInit {
-  staffMembers: StaffMember[] = [];
+  staffMember: StaffMember[] = [];
+  public StaffStorage: StaffMember[] = [];
 
   staffMemberForm: FormGroup = new FormGroup({
     name: new FormControl(''),

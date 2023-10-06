@@ -12,10 +12,8 @@ import {ApiService} from "./api/api.service";
 export class AppComponent implements OnInit {
   title = 'stroer-staff';
 
-
   constructor(private http: HttpClient,public apiService: ApiService) {
   }
-
 
   ngOnInit() {
     this.apiService.initOfData()
