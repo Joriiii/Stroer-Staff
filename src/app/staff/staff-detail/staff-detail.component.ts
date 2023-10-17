@@ -20,7 +20,6 @@ export class StaffDetailComponent implements OnInit {
   });
 
   constructor(public apiService: ApiService, private route: ActivatedRoute) {
-
   }
 
   ngOnInit() {
@@ -51,7 +50,6 @@ export class StaffDetailComponent implements OnInit {
     }
     this.apiService.updateStaffMember(staffMember)
   }
-
 
   protected readonly query = query;
 }

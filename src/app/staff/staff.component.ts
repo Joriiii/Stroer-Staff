@@ -23,7 +23,6 @@ export class StaffComponent implements OnInit {
       this.staffMembers = data;
       this.filteredStaffMembers = this.staffMembers
     })
-
   }
 
   // Compares the query with the name and position of each member
