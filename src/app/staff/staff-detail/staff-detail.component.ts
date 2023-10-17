@@ -11,10 +11,9 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./staff-detail.component.css']
 })
 export class StaffDetailComponent implements OnInit {
-  staffMember: StaffMember[] = [];
-
 
   staffMemberForm: FormGroup = new FormGroup({
+    id: new FormControl(''),
     name: new FormControl(''),
     position: new FormControl(''),
     birth: new FormControl('')
@@ -26,22 +25,31 @@ export class StaffDetailComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log('ID:', id);
     if (id !== null && id !== undefined) {
       const parsedId = Number.parseInt(id);
-      console.log('Parsed ID:', parsedId);
-
       const staffMember = this.apiService.getUserById(parsedId)
 
       if (staffMember != null || staffMember != undefined) {
         console.log(staffMember.name)
         this.staffMemberForm.setValue({
+          id: staffMember.id || '',
           name: staffMember.name || '',
           position: staffMember.position || '',
           birth: staffMember.birth || ''
         });
       }
     }
+  }
+
+  // Method to add a new staff member to the list via the API service
+  public updateStaffMember() {
+    let staffMember: StaffMember = {
+      id: this.staffMemberForm.value.id,
+      name: this.staffMemberForm.value.name,
+      position: this.staffMemberForm.value.position,
+      birth: this.staffMemberForm.value.birth
+    }
+    this.apiService.updateStaffMember(staffMember)
   }
 
 

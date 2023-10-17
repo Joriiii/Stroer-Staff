@@ -22,11 +22,11 @@ export class StaffComponent implements OnInit {
     this.apiService.getStaffMembers().then(data => {
       this.staffMembers = data;
       this.filteredStaffMembers = this.staffMembers
-
     })
 
   }
 
+  // Compares the query with the name and position of each member
   searchStaffMembers(searchQuery: string) {
     this.filteredStaffMembers = this.staffMembers.filter(member =>
       member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -34,6 +34,7 @@ export class StaffComponent implements OnInit {
     );
   }
 
+  // Redirects to the detail page of a team member with the given ID.
   redirectToDetail(id: number) {
     this.router.navigate(['/staff-detail', id]);
   }

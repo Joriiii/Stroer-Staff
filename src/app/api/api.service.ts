@@ -20,12 +20,10 @@ export class ApiService {
 
   public initOfData() {
     this.getStaffMembersInit().subscribe(x => x.map(c =>
-    {this.StaffStorage.push(c)}
+      {this.StaffStorage.push(c)}
     ))
 
     this.getPositions().subscribe(x => {this.positions = x.positions, console.log(x)})
-
-    console.log("init!!")
   }
 
   getStaffMembersInit(): Observable<StaffMember[]> {
@@ -36,28 +34,31 @@ export class ApiService {
     return this.StaffStorage;
   }
 
+  // Method to add new staff member
   public addStaffMembers() {
-    var newStaff : StaffMember = {
-      id: 0,
-      name : 'test',
-      position : 'test',
+    const newStaff: StaffMember = {
+      id: Date.now(),
+      name: 'test',
+      position: 'test',
       birth: new Date().getDate()
     }
     this.StaffStorage.push(newStaff)
   }
 
+  // Method to remove the staff member from the array by id
   public removeStaffMember(id:number): void {
-    var itemToRemove = this.StaffStorage.findIndex(x => x.id = id)
-    this.StaffStorage.splice(itemToRemove, 1);
+    let item = this.StaffStorage.findIndex(x => x.id = id)
+    if (item != null)
+      this.StaffStorage.splice(item, 1);
   }
 
+  // Method to update the staff member in the array
   public updateStaffMember(staffMember: StaffMember): void {
-    var itemtoupdate = this.StaffStorage?.find(x => x.id == staffMember.id);
-  debugger
-    if (itemtoupdate != null) {
-      itemtoupdate.name = staffMember.name
-      itemtoupdate.birth = staffMember.birth
-      itemtoupdate.position = staffMember.position
+    let item = this.StaffStorage.find(x => x.id == staffMember.id);
+    if (item != null) {
+      item.name = staffMember.name
+      item.birth = staffMember.birth
+      item.position = staffMember.position
     }
   }
 
