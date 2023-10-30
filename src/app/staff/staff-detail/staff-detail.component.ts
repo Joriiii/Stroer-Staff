@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from "../../api/api.service";
 import { StaffMember } from "../../api/models/staff-member.model";
 import { FormControl, FormGroup } from "@angular/forms";
-import { query } from "@angular/animations";
-import {ActivatedRoute} from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { Router } from '@angular/router';
+import { query} from "@angular/animations";
 
 @Component({
   selector: 'app-staff-detail',
@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class StaffDetailComponent implements OnInit {
 
+  // Form group to manage the staff member details
   staffMemberForm: FormGroup = new FormGroup({
     id: new FormControl(''),
     name: new FormControl(''),
@@ -24,13 +25,18 @@ export class StaffDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Get the 'id' parameter from the route
     const id = this.route.snapshot.paramMap.get('id');
+
     if (id !== null && id !== undefined) {
+      // Convert 'id' to a number
       const parsedId = Number.parseInt(id);
-      const staffMember = this.apiService.getUserById(parsedId)
+
+      // Get the staff member details using the API service
+      const staffMember = this.apiService.getUserById(parsedId);
 
       if (staffMember != null || staffMember != undefined) {
-        console.log(staffMember.name)
+        // If staff member details are available, populate the form
         this.staffMemberForm.setValue({
           id: staffMember.id || '',
           name: staffMember.name || '',
@@ -41,7 +47,7 @@ export class StaffDetailComponent implements OnInit {
     }
   }
 
-  // Method to add a new staff member to the list via the API service
+  // Method to update a staff member's details
   public updateStaffMember() {
     let staffMember: StaffMember = {
       id: this.staffMemberForm.value.id,
@@ -49,16 +55,19 @@ export class StaffDetailComponent implements OnInit {
       position: this.staffMemberForm.value.position,
       birth: this.staffMemberForm.value.birth
     }
-    this.apiService.updateStaffMember(staffMember)
+
+    // Call the API service to update the staff member
+    this.apiService.updateStaffMember(staffMember);
   }
 
-
+  // Method to validate the birth date and form fields
   public validateDate() {
     const birthInput = document.getElementById('birth') as HTMLInputElement;
     const selectedDate = new Date(birthInput.value);
     const currentDate = new Date();
 
     if (selectedDate > currentDate || !birthInput.value) {
+      // Show an alert if the date is invalid
       alert("Invalid date. Please select a valid birth date.");
       birthInput.value = ""; // Reset the input value if the date is invalid.
       return;
@@ -68,19 +77,22 @@ export class StaffDetailComponent implements OnInit {
     const positionInput = this.staffMemberForm.get('position')!;
 
     if (!nameInput.value || !positionInput.value) {
+      // Show an alert if any of the form fields are empty
       alert("Please fill in all fields.");
       return;
     }
 
+    // If date and fields are valid, update the staff member and navigate
     this.updateStaffMember();
     this.router.navigate(['/staff']);
   }
 
+  // Method to cancel and reset the form
   public cancel() {
     this.staffMemberForm.reset();
     this.router.navigate(['/staff']);
   }
 
-
+  // Additional query property (make sure it's defined somewhere)
   protected readonly query = query;
 }
