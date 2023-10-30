@@ -52,21 +52,35 @@ export class StaffDetailComponent implements OnInit {
     this.apiService.updateStaffMember(staffMember)
   }
 
+
   public validateDate() {
     const birthInput = document.getElementById('birth') as HTMLInputElement;
-
     const selectedDate = new Date(birthInput.value);
     const currentDate = new Date();
 
     if (selectedDate > currentDate || !birthInput.value) {
       alert("Invalid date. Please select a valid birth date.");
       birthInput.value = ""; // Reset the input value if the date is invalid.
+      return;
     }
-    else {
-      this.updateStaffMember();
-      this.router.navigate(['/staff']);
+
+    const nameInput = this.staffMemberForm.get('name')!;
+    const positionInput = this.staffMemberForm.get('position')!;
+
+    if (!nameInput.value || !positionInput.value) {
+      alert("Please fill in all fields.");
+      return;
     }
+
+    this.updateStaffMember();
+    this.router.navigate(['/staff']);
   }
+
+  public cancel() {
+    this.staffMemberForm.reset();
+    this.router.navigate(['/staff']);
+  }
+
 
   protected readonly query = query;
 }

@@ -35,7 +35,15 @@ export class ApiService {
     return this.StaffStorage;
   }
 
-  // Method to add new staff member
+// Method to remove the staff member from the array by id
+  public removeStaffMember(id:number): void {
+    let index = this.StaffStorage.findIndex(x => x.id === id);
+    if (index !== -1) {
+      this.StaffStorage.splice(index, 1);
+    }
+  }
+
+// Method to add new staff member
   public addStaffMembers() {
     const highestId = Math.max(...this.StaffStorage.map(member => member.id));
 
@@ -50,12 +58,6 @@ export class ApiService {
     this.router.navigate(['/staff-detail', newStaff.id]);
   }
 
-  // Method to remove the staff member from the array by id
-  public removeStaffMember(id:number): void {
-    let item = this.StaffStorage.findIndex(x => x.id = id)
-    if (item != null)
-      this.StaffStorage.splice(item, 1);
-  }
 
   // Method to update the staff member in the array
   public updateStaffMember(staffMember: StaffMember): void {

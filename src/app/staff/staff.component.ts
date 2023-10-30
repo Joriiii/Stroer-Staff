@@ -33,6 +33,10 @@ export class StaffComponent implements OnInit {
     );
   }
 
+  public addNewEmployee() {
+    this.apiService.addStaffMembers();
+  }
+
   // Redirects to the detail page of a team member with the given ID.
   redirectToDetail(id: number) {
     this.router.navigate(['/staff-detail', id]);
