@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { StaffMember } from './models/staff-member.model';
 import { Observable } from 'rxjs';
 import {StaffMemberPosition, StaffMemberPositionResponse} from "./models/staff-member-position";
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class ApiService {
   public StaffStorage: StaffMember[] = [];
   public positions: StaffMemberPosition[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   public initOfData() {
@@ -36,13 +37,17 @@ export class ApiService {
 
   // Method to add new staff member
   public addStaffMembers() {
+    const highestId = Math.max(...this.StaffStorage.map(member => member.id));
+
     const newStaff: StaffMember = {
-      id: Date.now(),
-      name: 'test',
-      position: 'test',
+      id: highestId + 1,
+      name: '',
+      position: '',
       birth: new Date().getDate()
     }
-    this.StaffStorage.push(newStaff)
+
+    this.StaffStorage.push(newStaff);
+    this.router.navigate(['/staff-detail', newStaff.id]);
   }
 
   // Method to remove the staff member from the array by id

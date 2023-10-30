@@ -3,28 +3,28 @@
     "id": 1,
     "name": "Pavel Babusik",
     "position": "front-end developer",
-    "birth": "14. 1. 2000"
+    "birth": "1995-12-06"
 
   },
   {
     "id": 2,
     "name": "Adam Krcek",
     "position": "product manager",
-    "birth": "24. 9. 1999"
+    "birth": "1968-02-01"
 
   },
   {
     "id": 3,
     "name": "John Smith",
     "position": "scrum master",
-    "birth": "2. 12. 1984"
+    "birth": "1995-11-05"
 
   },
   {
     "id": 4,
     "name": "Petr Novak",
     "position": "full-stack developer",
-    "birth": "4. 8. 1993"
+    "birth": "2000-06-23"
 
   }
 ]

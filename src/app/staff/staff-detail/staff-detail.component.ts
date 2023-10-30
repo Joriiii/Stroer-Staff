@@ -4,6 +4,7 @@ import { StaffMember } from "../../api/models/staff-member.model";
 import { FormControl, FormGroup } from "@angular/forms";
 import { query } from "@angular/animations";
 import {ActivatedRoute} from "@angular/router";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-staff-detail',
@@ -19,7 +20,7 @@ export class StaffDetailComponent implements OnInit {
     birth: new FormControl('')
   });
 
-  constructor(public apiService: ApiService, private route: ActivatedRoute) {
+  constructor(public apiService: ApiService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
@@ -49,6 +50,22 @@ export class StaffDetailComponent implements OnInit {
       birth: this.staffMemberForm.value.birth
     }
     this.apiService.updateStaffMember(staffMember)
+  }
+
+  public validateDate() {
+    const birthInput = document.getElementById('birth') as HTMLInputElement;
+
+    const selectedDate = new Date(birthInput.value);
+    const currentDate = new Date();
+
+    if (selectedDate > currentDate || !birthInput.value) {
+      alert("Invalid date. Please select a valid birth date.");
+      birthInput.value = ""; // Reset the input value if the date is invalid.
+    }
+    else {
+      this.updateStaffMember();
+      this.router.navigate(['/staff']);
+    }
   }
 
   protected readonly query = query;
